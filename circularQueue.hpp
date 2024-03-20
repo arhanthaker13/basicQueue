@@ -2,22 +2,26 @@
 #define INCLUDED_CIRCULARQUEUE_HPP
 
 #include <iostream>
-
-struct tempName {
-    char payload[6];
-    int dest;
-};
+#include <queue>
 
 class Queue {
 private:
-    int head;
-    int tail ;
+    struct queueItem {
+        std::string payload;
+        int dest;
+    };
+    std::queue<queueItem> q;
+    queueItem* head;
+    queueItem* tail;
+    int count;
+    const int MAXSIZE = 6;
 
 public:
-    Queue() : head(-1), tail(-1) {}
-    void validate();
+    Queue(): head(nullptr), tail(nullptr) {}
     void enqueue();
     void dequeue();
     void showQueue();
+    bool validate();
 };
+
 #endif
